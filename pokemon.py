@@ -1,7 +1,6 @@
 import pandas as pd # ficheiros
 import streamlit as st # design
-import plotly.express as px # graficos
-from PIL import Image
+from PIL import Image # imagens
 
 pokemons = pd.read_csv('Pokemon.csv')
 pokemon = list(pokemons['Name'].unique())
@@ -10,11 +9,10 @@ tipo2 = list(pokemons['Type 2'].unique())
 
 st.title('Pokedex')
 st.sidebar.title('Escolhe o teu pokemon')
+
 nome_pokemon = st.sidebar.selectbox('Nome', ['Todos'] + pokemon)
 tipo1_pokemon = st.sidebar.selectbox('Tipo 1', ['Todos'] + tipo1)
 tipo2_pokemon = st.sidebar.selectbox('Tipo 2', ['Todos'] + tipo2)
-
-
 
 pokemons = pokemons[pokemons['Name'] == nome_pokemon]
 
