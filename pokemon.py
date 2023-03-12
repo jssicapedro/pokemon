@@ -1,6 +1,6 @@
-import pandas as pd # ficheiros
-import streamlit as st # design
-from PIL import Image # imagens
+import pandas as pd
+import streamlit as st
+from PIL import Image
 
 pokemons = pd.read_csv('Pokemon.csv')
 pokemon = list(pokemons['Name'].unique())
@@ -16,6 +16,9 @@ tipo2_pokemon = st.sidebar.selectbox('Tipo 2', ['Todos'] + tipo2)
 
 pokemons = pokemons[pokemons['Name'] == nome_pokemon]
 
+if tipo1_pokemon != 'Todos':
+    tipo_1 = pokemons[pokemons['Type 1'] == tipo1_pokemon]
+
 if nome_pokemon != 'Todos':
     st.title(f'_{nome_pokemon}_')
     id_pokemon = pokemons.iloc[0]['#']
@@ -25,3 +28,11 @@ if nome_pokemon != 'Todos':
     st.write(pokemons)
 else:
     st.header('Escolhe um pokemon')
+
+if tipo1_pokemon != 'Todos':
+    st.write(f'Lista de Pokemons do tipo {tipo1_pokemon}:')
+    st.write(pokemons)
+else:
+    st.write(f'Lista de todos os Pokemons:')
+    st.write(pokemons)
+
